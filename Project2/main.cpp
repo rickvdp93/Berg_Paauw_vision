@@ -9,7 +9,6 @@ void main()
 {	
 	string filename = "lena.png";
 	string path = "C:/" + filename;
-	string greyPath = "C:/grey_" + filename;
 	
 	corona::Image* image = corona::OpenImage(path.c_str(), corona::PF_B8G8R8A8);
 	if (!image){
@@ -57,13 +56,45 @@ void main()
 	}
 	p = (byte*)pixels;
 	d = (byte*)pixels;
-	for (int i = 0; i < numberOfPixels; i++) {
-		*d++ = LUT[*p++];
-		*d++ = LUT[*p++];
-		*d++ = LUT[*p++];
-		*d++ = *p++;
+	string channel = "";
+	string modification = "";
+	if (channel == "R"){
+		for (int i = 0; i < numberOfPixels; i++) {
+			*d++ = *p++;
+			*d++ = *p++;
+			*d++ = LUT[*p++];
+			*d++ = *p++;
+		}
+		modification = "R_";
 	}
-	
+	else if (channel == "G"){
+		for (int i = 0; i < numberOfPixels; i++) {
+			*d++ = *p++;
+			*d++ = LUT[*p++];
+			*d++ = *p++;
+			*d++ = *p++;
+		}
+		modification = "G_";
+	}
+	else if (channel == "B"){
+		for (int i = 0; i < numberOfPixels; i++) {
+			*d++ = LUT[*p++];
+			*d++ = *p++;
+			*d++ = *p++;
+			*d++ = *p++;
+		}
+		modification = "B_";
+	}
+	else{
+		for (int i = 0; i < numberOfPixels; i++) {
+			*d++ = LUT[*p++];
+			*d++ = LUT[*p++];
+			*d++ = LUT[*p++];
+			*d++ = *p++;
+		}
+		modification = "grey_";
+	}
+
 
 	for (int i = 0; i < 256; i++){
 		outFile << i;
@@ -71,6 +102,8 @@ void main()
 		outFile << (float)greyOccurrence[i] / numberOfPixels;
 		outFile << endl;
 	}
+
+	string greyPath = "C:/" + modification + filename;
 	bool output = corona::SaveImage(greyPath.c_str(), corona::FF_PNG, image);
 	outFile.close();
 }
