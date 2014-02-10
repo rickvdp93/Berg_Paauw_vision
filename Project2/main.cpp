@@ -7,8 +7,8 @@ using namespace std;
 
 void main()
 {	
-	string filename = "C:/gtr.png";
-	string filename2 = "C:/gtr2.png";
+	string filename = "C:/lena.png";
+	string filename2 = "C:/lena2.png";
 	
 	corona::Image* image = corona::OpenImage(filename.c_str(), corona::PF_B8G8R8A8);
 	if (!image){
@@ -30,6 +30,8 @@ void main()
 
 	typedef unsigned char byte;
 	unsigned int greyOccurrence[256] = { 0 };
+	unsigned int LUT[256]; // LookUpTable
+
 	byte* p = (byte*)pixels;
 	byte* d = (byte*)pixels;
 
@@ -45,6 +47,22 @@ void main()
 		*d++ = alpha;
 		greyOccurrence[grey] += 1;
 	}
+
+	unsigned int sum = 0;
+	for (int i = 0; i < 256; i++){
+		sum += greyOccurrence[i];
+		LUT[i] = (unsigned int)(sum*((float)255 / (width*height)));
+	}
+	p = (byte*)pixels;
+	d = (byte*)pixels;
+	for (int i = 0; i < (width * height); i++) {
+		*d++ = LUT[*p++];
+		*d++ = LUT[*p++];
+		*d++ = LUT[*p++];
+		*d++ = *p++;
+	}
+	
+
 	for (int i = 0; i < 256; i++){
 		outFile << i;
 		outFile << ";";
