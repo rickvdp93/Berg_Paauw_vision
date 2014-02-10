@@ -7,10 +7,11 @@ using namespace std;
 
 void main()
 {	
-	string filename = "C:/lena.png";
-	string filename2 = "C:/lena2.png";
+	string filename = "lena.png";
+	string path = "C:/" + filename;
+	string greyPath = "C:/grey_" + filename;
 	
-	corona::Image* image = corona::OpenImage(filename.c_str(), corona::PF_B8G8R8A8);
+	corona::Image* image = corona::OpenImage(path.c_str(), corona::PF_B8G8R8A8);
 	if (!image){
 		cout << "Missing file";
 		return;
@@ -69,6 +70,6 @@ void main()
 		outFile << (float)greyOccurrence[i]/(width*height);
 		outFile << endl;
 	}
-	bool output = corona::SaveImage(filename2.c_str(), corona::FF_PNG, image);
+	bool output = corona::SaveImage(greyPath.c_str(), corona::FF_PNG, image);
 	outFile.close();
 }
