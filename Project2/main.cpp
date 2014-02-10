@@ -17,11 +17,6 @@ void main()
 	}
 
 	ofstream outFile;
-	outFile.open("C:/csv.csv");
-	if (outFile.fail()) {
-		cout << "csv write open failed";
-		return;
-	}
 
 	int width = image->getWidth();
 	int height = image->getHeight();
@@ -56,7 +51,7 @@ void main()
 	}
 	p = (byte*)pixels;
 	d = (byte*)pixels;
-	string channel = "";
+	string channel = "B";
 	string modification = "";
 	if (channel == "R"){
 		for (int i = 0; i < numberOfPixels; i++) {
@@ -66,6 +61,11 @@ void main()
 			*d++ = *p++;
 		}
 		modification = "R_";
+		outFile.open("C:/R_histogram.csv");
+		if (outFile.fail()) {
+			cout << "csv write open failed";
+			return;
+		}
 	}
 	else if (channel == "G"){
 		for (int i = 0; i < numberOfPixels; i++) {
@@ -75,6 +75,11 @@ void main()
 			*d++ = *p++;
 		}
 		modification = "G_";
+		outFile.open("C:/G_histogram.csv");
+		if (outFile.fail()) {
+			cout << "csv write open failed";
+			return;
+		}
 	}
 	else if (channel == "B"){
 		for (int i = 0; i < numberOfPixels; i++) {
@@ -84,6 +89,11 @@ void main()
 			*d++ = *p++;
 		}
 		modification = "B_";
+		outFile.open("C:/B_histogram.csv");
+		if (outFile.fail()) {
+			cout << "csv write open failed";
+			return;
+		}
 	}
 	else{
 		for (int i = 0; i < numberOfPixels; i++) {
@@ -93,6 +103,11 @@ void main()
 			*d++ = *p++;
 		}
 		modification = "grey_";
+		outFile.open("C:/grey_histogram.csv");
+		if (outFile.fail()) {
+			cout << "csv write open failed";
+			return;
+		}
 	}
 
 
