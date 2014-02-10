@@ -47,7 +47,7 @@ void main()
 		*d++ = alpha;
 		greyOccurrence[grey] += 1;
 	}
-
+	//http://www.songho.ca/dsp/histogram/histogram.html
 	unsigned int sum = 0;
 	for (int i = 0; i < 256; i++){
 		sum += greyOccurrence[i];
