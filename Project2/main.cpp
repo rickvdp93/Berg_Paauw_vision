@@ -24,19 +24,19 @@ void main()
 		return;
 	}
 
-
 	int width = image->getWidth();
 	int height = image->getHeight();
+	int numberOfPixels = width * height;
 	void* pixels = image->getPixels();
 
 	typedef unsigned char byte;
-	unsigned int greyOccurrence[256] = { 0 };
-	unsigned int LUT[256]; // LookUpTable
+	unsigned int greyOccurrence[256] = { 0 }; // holds grey values
+	unsigned int LUT[256]; // LookUpTable > holds cummulative histogram values
 
 	byte* p = (byte*)pixels;
 	byte* d = (byte*)pixels;
 
-	for (int i = 0; i < width*height; i++){
+	for (int i = 0; i < numberOfPixels; i++){
 		byte red = *p++;
 		byte green = *p++;
 		byte blue = *p++;
@@ -48,15 +48,16 @@ void main()
 		*d++ = alpha;
 		greyOccurrence[grey] += 1;
 	}
+
 	//http://www.songho.ca/dsp/histogram/histogram.html
 	unsigned int sum = 0;
 	for (int i = 0; i < 256; i++){
-		sum += greyOccurrence[i];
-		LUT[i] = (unsigned int)(sum*((float)255 / (width*height)));
+		sum += greyOccurrence[i]; // create a cummulative histogram
+		LUT[i] = (unsigned int)(sum*((float)255 / numberOfPixels));
 	}
 	p = (byte*)pixels;
 	d = (byte*)pixels;
-	for (int i = 0; i < (width * height); i++) {
+	for (int i = 0; i < numberOfPixels; i++) {
 		*d++ = LUT[*p++];
 		*d++ = LUT[*p++];
 		*d++ = LUT[*p++];
@@ -67,7 +68,7 @@ void main()
 	for (int i = 0; i < 256; i++){
 		outFile << i;
 		outFile << ";";
-		outFile << (float)greyOccurrence[i]/(width*height);
+		outFile << (float)greyOccurrence[i] / numberOfPixels;
 		outFile << endl;
 	}
 	bool output = corona::SaveImage(greyPath.c_str(), corona::FF_PNG, image);
