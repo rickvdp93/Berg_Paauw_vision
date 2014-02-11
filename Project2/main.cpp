@@ -24,7 +24,11 @@ void main()
 	void* pixels = image->getPixels();
 
 	typedef unsigned char byte;
+	string channel = "B";
 	unsigned int greyOccurrence[256] = { 0 }; // holds grey values
+	unsigned int redOccurrence[256] = { 0 }; // holds grey values
+	unsigned int greenOccurrence[256] = { 0 }; // holds grey values
+	unsigned int blueOccurrence[256] = { 0 }; // holds grey values
 	unsigned int LUT[256]; // LookUpTable > holds cummulative histogram values
 
 	byte* p = (byte*)pixels;
@@ -40,7 +44,18 @@ void main()
 		*d++ = grey;
 		*d++ = grey;
 		*d++ = alpha;
-		greyOccurrence[grey] += 1;
+		if (channel == "R"){
+			redOccurrence[red] += 1;
+		}
+		else if (channel == "G"){
+			greenOccurrence[green] += 1;
+		}
+		else if (channel == "B"){
+			blueOccurrence[blue] += 1;
+		}
+		else{
+			greyOccurrence[grey] += 1;
+		}		
 	}
 
 	//http://www.songho.ca/dsp/histogram/histogram.html
@@ -51,7 +66,7 @@ void main()
 	}
 	p = (byte*)pixels;
 	d = (byte*)pixels;
-	string channel = "B";
+
 	string modification = "";
 	if (channel == "R"){
 		for (int i = 0; i < numberOfPixels; i++) {
