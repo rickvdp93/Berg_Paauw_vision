@@ -73,10 +73,14 @@
   <ItemGroup>
     <ClInclude Include="include\corona.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="opdr1.h" />
+    <ClInclude Include="opdr2.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="opdr1.cpp" />
+    <ClCompile Include="opdr2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project2.rc" />
