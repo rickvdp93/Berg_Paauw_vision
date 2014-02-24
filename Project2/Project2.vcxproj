@@ -71,16 +71,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="BlueFilter.h" />
+    <ClInclude Include="EqualizeFilter.h" />
+    <ClInclude Include="GrayFilter.h" />
+    <ClInclude Include="GreenFilter.h" />
     <ClInclude Include="include\corona.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="opdr1.h" />
     <ClInclude Include="opdr2.h" />
+    <ClInclude Include="RedFilter.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BlueFilter.cpp" />
+    <ClCompile Include="EqualizeFilter.cpp" />
+    <ClCompile Include="GrayFilter.cpp" />
+    <ClCompile Include="GreenFilter.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="opdr1.cpp" />
     <ClCompile Include="opdr2.cpp" />
+    <ClCompile Include="RedFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project2.rc" />
