@@ -26,5 +26,14 @@ void opdr2()
 
 	string command = "explorer " + path;
 
-	saveImage(image, path + "R_" + source);
+	int width = image->getWidth();
+	int height = image->getHeight();
+	int numberOfPixels = width * height;
+
+	void* pixels = image->getPixels();
+	makeGrayScale(numberOfPixels, (byte*)pixels);
+	setChannel(SALTPEPPER, numberOfPixels, (byte*)pixels);
+	saveImage(image, path + "noise_" + source);
+	//writeCSV(SALTPEPPER, numberOfPixels, path + "E_" + histrogram);
+	image = NULL;
 }

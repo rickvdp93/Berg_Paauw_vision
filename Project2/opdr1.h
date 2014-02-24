@@ -5,7 +5,7 @@ typedef unsigned char byte;
 
 void makeGrayScale(int numberOfPixels, byte * pixels);
 
-enum ChannelMode { RED, GREEN, BLUE, EQUALIZED };
+enum ChannelMode { RED, GREEN, BLUE, EQUALIZED, SALTPEPPER };
 
 void setChannel(ChannelMode channel, int numberOfPixels, byte * pixels);
 
