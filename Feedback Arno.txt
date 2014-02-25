@@ -1,0 +1,27 @@
+Meetrapport week 1
+======================
+Jullie hebben een redelijk goed meetrapport neergezet. Er zijn wel wat punten. Jullie hebben twee verschillende experimenten in 1 meetrapport gezet. Beter is om deze te splitsen.
+
+Daarnaast moeten jullie proberen de hypotheses nog iets scherper te krijgen. Ze moeten beter meetbaar zijn en concreter geformuleerd. Maar ik moet wel zeggen dat jullie hierbij al goed op weg zijn.
+
+Jullie stellen ook nog iets over snelheid. Maar dat meten en rapporteren jullie niet.
+
+Meetrapport week 2
+======================
+Bij de werkwijze moeten jullie nog aangeven hoe jullie de evaluatie gaan doen. Hoe meten jullie de kwaliteit? Is dat op zicht? Is dat op een andere manier? Zorg dat je dit dan ook gebruikt in de verwerking!
+
+De plaatjes zijn wat klein om goed de data (ruis) te kunnen zien.
+
+Verder netjes uitgewerkt!
+
+Code
+=======================
+
+Waarom is MedianFilter niet afgeleid van ImageMatrixWalker? Er staat namelijk heel veel code die hetzelfde is. Bovendien, de manier waarop jullie de ImageMatrixWalker hebben ontworpen kan dit nog steeds.
+
+Verder ziet de code er best goed uit. Volgens mij is het niet altijd de meeste snelle code, maar wel redelijk algemeen. Neem bijvoorbeeld de volgende for-loop:
+
+	for (int i = 0; i < (n*n); i++){
+	}
+	
+De n*n wordt iedere keer berekend in de loop. Als er veel in de loop gebeurd kan het zijn dat deze niet wordt gecached (op de processor of door de compiler).
