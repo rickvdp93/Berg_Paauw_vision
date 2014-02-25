@@ -10,7 +10,9 @@
 #include "MedianFilter.h"
 #include "MinFilter.h"
 #include "MaxFilter.h"
+#include "AverageFilter.h"
 #include "SaltPepperFilter.h"
+#include "GrayFilter.h"
 
 using namespace std;
 
@@ -23,6 +25,7 @@ void opdr2_saveImage(corona::Image* image, string path) {
 
 void opdr2()
 {
+	//GrayFilter gray;
 	string source;
 	string histrogram = "histogram.csv";
 	string path;
@@ -48,9 +51,11 @@ void opdr2()
 
 	byte* p = (byte*)image->getPixels();
 	byte* d = (byte*)destination->getPixels();
-	MinFilter filter;
-	//filter.FilterRGB(width, height, 11, p, d);
+
+	//gray.makeGrayScale(numberOfPixels, p);
+	AverageFilter filter;
+	//filter.FilterRGB(width, height, 3, p, d);
 	filter.walk(width, height, 11, p, d);
-	opdr2_saveImage(destination, path + "MEDIAN_" + source);
+	opdr2_saveImage(destination, path + "AVG_" + source);
 	cout << "Done.";
 }

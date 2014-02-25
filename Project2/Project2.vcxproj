@@ -71,6 +71,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AverageFilter.h" />
     <ClInclude Include="SaltPepperFilter.h" />
     <ClInclude Include="BlueFilter.h" />
     <ClInclude Include="EqualizeFilter.h" />
@@ -88,6 +89,7 @@
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AverageFilter.cpp" />
     <ClCompile Include="SaltPepperFilter.cpp" />
     <ClCompile Include="BlueFilter.cpp" />
     <ClCompile Include="EqualizeFilter.cpp" />

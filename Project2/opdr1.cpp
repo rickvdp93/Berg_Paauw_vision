@@ -49,7 +49,7 @@ void opdr1()
 
 	void* pixels = image->getPixels();
 	grayFilter.makeGrayScale(numberOfPixels, (byte*)pixels);
-	equalizeFilter.setChannel(grayFilter, numberOfPixels, (byte*)pixels);
+	//equalizeFilter.setChannel(grayFilter, numberOfPixels, (byte*)pixels);
 	saveImage(image, path + "E_" + source);
 	equalizeFilter.writeCSV(grayFilter, numberOfPixels, path + "E_" + histrogram);
 	image = NULL;
