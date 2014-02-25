@@ -3,6 +3,7 @@
 #include <fstream>
 #include "corona.h"
 #include <stdlib.h>
+#include <algorithm>    // std::max
 #include "opdr2.h"
 #include <direct.h>
 #include "GrayFilter.h"
@@ -139,8 +140,7 @@ void FilterRGB(int imageWidth, int imageHeight, int windowSize, byte* sourceScan
 
 void SaltPepperCalc(byte* a, int n){
 	int sum = 0;
-	int midPix = ((n*n) / 2) + 1;
-	a[midPix];
+	int midPix = ((n*n) / 2);
 	for (int i = 0; i < (n*n); i++){
 		sum += a[i];
 	}
@@ -192,8 +192,25 @@ void FilterSaltPepper(int imageWidth, int imageHeight, int windowSize, byte* sou
 
 }
 
-void MaxCalc(byte* a, int n){
+void MinCalc(byte* a, int n){
+	int min = 255;
+	int midPix = ((n*n) / 2);
+	for (int i = 0; i < (n*n); i++){
+		if (a[i] < min)
+			min = a[i];
+	}
+	a[midPix] = (byte)min;
+}
 
+void MaxCalc(byte* a, int n){
+	byte max = 0;
+	int midPix = ((n*n) / 2);
+	for (int i = 0; i < (n*n); i++){
+		max = (a[i] > max ? a[i] : max);
+		//if (a[i] > max)
+		//	max = a[i];
+	}
+	a[midPix] = (byte)max;
 }
 
 void FilterMaximum(int imageWidth, int imageHeight, int windowSize, byte* sourceScan, byte* destinationScan, int sourceStride, int destinationStride){
@@ -269,7 +286,8 @@ void opdr2()
 	byte* d = (byte*)pixels;
 	//Filter(width, height, 3, p, d, width * 3, width * 3);
 	//FilterRGB(width, height, 3, p, d, width * 3, width * 3);
-	FilterSaltPepper(width, height, 3, p, d, width * 3, width * 3);
+	//FilterSaltPepper(width, height, 11, p, d, width * 3, width * 3);
+	FilterMaximum(width, height, 3, p, d, width * 3, width * 3);
 	opdr2_saveImage(image, path + "MEDIAN_" + source);
 	cout << "Done.";
 }
