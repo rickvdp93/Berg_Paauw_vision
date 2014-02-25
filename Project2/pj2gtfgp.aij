@@ -139,13 +139,14 @@ void FilterRGB(int imageWidth, int imageHeight, int windowSize, byte* sourceScan
 
 void SaltPepperCalc(byte* a, int n){
 	int sum = 0;
+	cout << a;
 	int midPix = ((n*n) / 2) + 1;
-	a[midPix];
 	for (int i = 0; i < (n*n); i++){
 		sum += a[i];
 	}
-	int average = sum / (n*n);
-	a[midPix] = (byte)average;
+	byte average = sum / (n*n);
+	a[midPix] = average;
+	cout << a;
 }
 
 void FilterSaltPepper(int imageWidth, int imageHeight, int windowSize, byte* sourceScan, byte* destinationScan, int sourceStride, int destinationStride){
@@ -269,7 +270,7 @@ void opdr2()
 	byte* d = (byte*)pixels;
 	//Filter(width, height, 3, p, d, width * 3, width * 3);
 	//FilterRGB(width, height, 3, p, d, width * 3, width * 3);
-	FilterSaltPepper(width, height, 3, p, d, width * 3, width * 3);
+	FilterSaltPepper(width, height, 11, p, d, width * 3, width * 3);
 	opdr2_saveImage(image, path + "MEDIAN_" + source);
 	cout << "Done.";
 }

@@ -33,7 +33,7 @@ void opdr1()
 	cin >> path;
 	cout << "Name + extension of the picture (like pic.jpg): \n";
 	cin >> source;
-	cout << "Please wait while the conversions take place... (working directory will be openend when done)";
+	cout << "Please wait while the conversions take place...";
 
 	corona::Image* image = corona::OpenImage((path + source).c_str(), corona::PF_B8G8R8A8);
 	if (!image){
@@ -82,5 +82,5 @@ void opdr1()
 	saveImage(fun, path + "FUN_" + source);
 	//writeCSV(EQUALIZED, numberOfPixels, path + "FUN_" + histrogram);
 	fun = NULL;
-	system(command.c_str());
+	cout << "Done.";
 }
