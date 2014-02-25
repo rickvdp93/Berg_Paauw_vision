@@ -71,23 +71,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="SaltPepperFilter.h" />
     <ClInclude Include="BlueFilter.h" />
     <ClInclude Include="EqualizeFilter.h" />
     <ClInclude Include="GrayFilter.h" />
     <ClInclude Include="GreenFilter.h" />
+    <ClInclude Include="ImageMatrixWalker.h" />
     <ClInclude Include="include\corona.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="MaxFilter.h" />
+    <ClInclude Include="MedianFilter.h" />
+    <ClInclude Include="MinFilter.h" />
     <ClInclude Include="opdr1.h" />
     <ClInclude Include="opdr2.h" />
     <ClInclude Include="RedFilter.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SaltPepperFilter.cpp" />
     <ClCompile Include="BlueFilter.cpp" />
     <ClCompile Include="EqualizeFilter.cpp" />
     <ClCompile Include="GrayFilter.cpp" />
     <ClCompile Include="GreenFilter.cpp" />
+    <ClCompile Include="ImageMatrixWalker.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MaxFilter.cpp" />
+    <ClCompile Include="MedianFilter.cpp" />
+    <ClCompile Include="MinFilter.cpp" />
     <ClCompile Include="opdr1.cpp" />
     <ClCompile Include="opdr2.cpp" />
     <ClCompile Include="RedFilter.cpp" />
