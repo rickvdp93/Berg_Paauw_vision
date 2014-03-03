@@ -72,6 +72,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AverageFilter.h" />
+    <ClInclude Include="kmeans.h" />
     <ClInclude Include="SaltPepperFilter.h" />
     <ClInclude Include="BlueFilter.h" />
     <ClInclude Include="EqualizeFilter.h" />
@@ -90,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AverageFilter.cpp" />
+    <ClCompile Include="kmeans.cpp" />
     <ClCompile Include="SaltPepperFilter.cpp" />
     <ClCompile Include="BlueFilter.cpp" />
     <ClCompile Include="EqualizeFilter.cpp" />

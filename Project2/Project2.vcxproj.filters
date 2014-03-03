@@ -63,6 +63,9 @@
     <ClInclude Include="AverageFilter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="kmeans.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -105,6 +108,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="AverageFilter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kmeans.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

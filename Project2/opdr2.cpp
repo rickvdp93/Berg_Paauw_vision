@@ -13,6 +13,7 @@
 #include "AverageFilter.h"
 #include "SaltPepperFilter.h"
 #include "GrayFilter.h"
+#include "kmeans.h"
 
 using namespace std;
 
@@ -52,10 +53,14 @@ void opdr2()
 	byte* p = (byte*)image->getPixels();
 	byte* d = (byte*)destination->getPixels();
 
+	kmeans filter;
+	filter.filter(p, d, numberOfPixels, 6);
+	/*
+
 	//gray.makeGrayScale(numberOfPixels, p);
 	AverageFilter filter;
 	//filter.FilterRGB(width, height, 3, p, d);
-	filter.walk(width, height, 11, p, d);
-	opdr2_saveImage(destination, path + "AVG_" + source);
+	filter.walk(width, height, 11, p, d);*/
+	opdr2_saveImage(destination, path + "KMEANS_" + source);
 	cout << "Done.";
 }
