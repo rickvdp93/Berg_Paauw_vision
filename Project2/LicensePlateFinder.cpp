@@ -28,7 +28,7 @@ LicensePlateFinder::LicensePlateFinder(int argc, char * argv[])
 		source = file.substr(pos, (file.length() - pos));
 	}
 	else {
-		cout << "Location of the picture (like C:\\images\\): \n";
+		cout << "Location of the picture (like C:\\images\\) (this folder requires a DEBUG folder!!!!): \n";
 		cin >> path;
 		cout << "Name + extension of the picture (like pic.jpg): \n";
 		cin >> source;
