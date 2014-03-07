@@ -43,6 +43,10 @@
     <IncludePath>C:\libs\corona-1.0.2-vc6\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\libs\corona-1.0.2-vc6\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>C:\libs\corona-1.0.2-vc6\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\libs\corona-1.0.2-vc6\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
@@ -68,11 +72,17 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>corona.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="AverageFilter.h" />
+    <ClInclude Include="BinarizeFilter.h" />
     <ClInclude Include="kmeans.h" />
+    <ClInclude Include="LicensePlateFinder.h" />
+    <ClInclude Include="LicensePoint.h" />
+    <ClInclude Include="LicensePosition.h" />
+    <ClInclude Include="LicenseScanner.h" />
     <ClInclude Include="SaltPepperFilter.h" />
     <ClInclude Include="BlueFilter.h" />
     <ClInclude Include="EqualizeFilter.h" />
@@ -88,10 +98,14 @@
     <ClInclude Include="opdr2.h" />
     <ClInclude Include="RedFilter.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="YellowFilter.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AverageFilter.cpp" />
+    <ClCompile Include="BinarizeFilter.cpp" />
     <ClCompile Include="kmeans.cpp" />
+    <ClCompile Include="LicensePlateFinder.cpp" />
+    <ClCompile Include="LicenseScanner.cpp" />
     <ClCompile Include="SaltPepperFilter.cpp" />
     <ClCompile Include="BlueFilter.cpp" />
     <ClCompile Include="EqualizeFilter.cpp" />
@@ -105,6 +119,7 @@
     <ClCompile Include="opdr1.cpp" />
     <ClCompile Include="opdr2.cpp" />
     <ClCompile Include="RedFilter.cpp" />
+    <ClCompile Include="YellowFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Project2.rc" />
