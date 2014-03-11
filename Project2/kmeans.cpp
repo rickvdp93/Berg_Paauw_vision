@@ -39,7 +39,7 @@ void kmeans::filter(byte* p, byte* d, int numberOfPixels, int kCount) {
 			clusterSum[(cluster * 3) + 2] += blue;
 			clusterSumCount[cluster] += 1;
 		}
-		//divide clusterSum to valid cluster value. TODO: FIX DIVIDE BY ZERO
+		//divide clusterSum to valid cluster value. 
 		for (int cluster = 0; cluster < kCount; cluster++) {
 			for (int j = 0; j < 3; j++){
 				if (clusterSumCount[cluster] != 0)

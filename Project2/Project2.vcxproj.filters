@@ -27,9 +27,6 @@
     <ClInclude Include="opdr1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="opdr2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="GrayFilter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -84,15 +81,18 @@
     <ClInclude Include="LicensePosition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Threshold.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opdr23.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="opdr1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="opdr2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="GrayFilter.cpp">
@@ -141,6 +141,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LicensePlateFinder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Threshold.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="opdr23.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

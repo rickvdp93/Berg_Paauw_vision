@@ -95,9 +95,10 @@
     <ClInclude Include="MedianFilter.h" />
     <ClInclude Include="MinFilter.h" />
     <ClInclude Include="opdr1.h" />
-    <ClInclude Include="opdr2.h" />
+    <ClInclude Include="opdr23.h" />
     <ClInclude Include="RedFilter.h" />
     <ClInclude Include="resource.h" />
+    <ClInclude Include="Threshold.h" />
     <ClInclude Include="YellowFilter.h" />
   </ItemGroup>
   <ItemGroup>
@@ -117,8 +118,9 @@
     <ClCompile Include="MedianFilter.cpp" />
     <ClCompile Include="MinFilter.cpp" />
     <ClCompile Include="opdr1.cpp" />
-    <ClCompile Include="opdr2.cpp" />
+    <ClCompile Include="opdr23.cpp" />
     <ClCompile Include="RedFilter.cpp" />
+    <ClCompile Include="Threshold.cpp" />
     <ClCompile Include="YellowFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
