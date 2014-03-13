@@ -87,6 +87,12 @@
     <ClInclude Include="opdr23.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="transformationMatrix.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="opdr5.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -147,6 +153,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="opdr23.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="transformationMatrix.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="opdr5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

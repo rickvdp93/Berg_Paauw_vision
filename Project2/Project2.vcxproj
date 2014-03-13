@@ -83,6 +83,7 @@
     <ClInclude Include="LicensePoint.h" />
     <ClInclude Include="LicensePosition.h" />
     <ClInclude Include="LicenseScanner.h" />
+    <ClInclude Include="opdr5.h" />
     <ClInclude Include="SaltPepperFilter.h" />
     <ClInclude Include="BlueFilter.h" />
     <ClInclude Include="EqualizeFilter.h" />
@@ -99,6 +100,7 @@
     <ClInclude Include="RedFilter.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Threshold.h" />
+    <ClInclude Include="transformationMatrix.h" />
     <ClInclude Include="YellowFilter.h" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +109,7 @@
     <ClCompile Include="kmeans.cpp" />
     <ClCompile Include="LicensePlateFinder.cpp" />
     <ClCompile Include="LicenseScanner.cpp" />
+    <ClCompile Include="opdr5.cpp" />
     <ClCompile Include="SaltPepperFilter.cpp" />
     <ClCompile Include="BlueFilter.cpp" />
     <ClCompile Include="EqualizeFilter.cpp" />
@@ -121,6 +124,7 @@
     <ClCompile Include="opdr23.cpp" />
     <ClCompile Include="RedFilter.cpp" />
     <ClCompile Include="Threshold.cpp" />
+    <ClCompile Include="transformationMatrix.cpp" />
     <ClCompile Include="YellowFilter.cpp" />
   </ItemGroup>
   <ItemGroup>
