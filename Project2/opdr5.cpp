@@ -53,9 +53,10 @@ opdr5::opdr5(int argc, char * argv[])
 
 	corona::Image* destination = corona::CloneImage(image, corona::PF_R8G8B8);
 	byte* d = (byte*)destination->getPixels();
-	int hoek = 45;
-	float matrix[9] = {cos(hoek), -sin(hoek), 0, sin(hoek), cos(hoek), 0, 0, 0, 1};
-	float invmatrix[9] = {cos(hoek), sin(hoek), 0, -cos(hoek), cos(hoek), 0, 0, 0, 1};
+	double const Pi = 4 * atan(1);
+	double corner = Pi/9; // corner of 20 degrees (pi = 180)
+	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
+	float invmatrix[9] = { cos(corner), sin(corner), 0, -cos(corner), cos(corner), 0, 0, 0, 1 };
 	transformationMatrix trans;
 	trans.walk(width, height, matrix, 0, p, d);
 	opdr5_saveImage(destination, path + "TRANSMAT" + "_" + source);
