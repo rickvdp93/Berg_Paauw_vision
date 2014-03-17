@@ -58,7 +58,7 @@ opdr5::opdr5(int argc, char * argv[])
 	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
 	float invmatrix[9] = { cos(corner), sin(corner), 0, -cos(corner), cos(corner), 0, 0, 0, 1 };
 	transformationMatrix trans;
-	trans.walk(width, height, matrix, 0, p, d);
+	trans.walk(width, height, matrix, 1, p, d);
 	opdr5_saveImage(destination, path + "TRANSMAT" + "_" + source);
 
 	cout << endl << "Done";
