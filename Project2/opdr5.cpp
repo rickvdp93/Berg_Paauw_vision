@@ -18,21 +18,36 @@ opdr5::opdr5(int argc, char * argv[])
 {
 	string source;
 	string path;
+	double const Pi = 4 * atan(1);
+	double corner = (Pi / 9) * 17; // corner of 20 degrees (pi = 180)
+	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
+	int interpol = 0;
 
-	if (argc == 3) {
+	if (argc == 4) {
 		std::string file = argv[1];
 		int pos = file.rfind("\\") + 1;
 		path = file.substr(0, pos);
 		source = file.substr(pos, (file.length() - pos));
-		std::string command = argv[2];
+		std::string line;
+		int count = 0;
+		std::ifstream backstory(argv[2]);
+		if (backstory.is_open())
+		{
+			while (backstory.good())
+			{
+				getline(backstory, line);
+				matrix[count] = (float)atof(line.c_str());
+				count += 1;
+			}
+		}
+		interpol = atoi(argv[3]);
 	}
 	else {
-		cout << "No parameters given. Example: vision.exe \"C:\\test\\test.jpg\" 3. Last parameter can be t for threshold instead of kmeans cluster size" << endl;
+		cout << "No parameters given. Example: vision.exe \"C:\\test\\test.jpg\" \"C:\\test\\matrix.txt\"." << endl;
 		cout << "Location of the picture (like C:\\images\\): " << endl;
 		cin >> path;
 		cout << "Name + extension of the picture (like pic.jpg): \n";
 		cin >> source;
-
 	}
 	cout << "Please wait while the conversions take place..." << endl;
 
@@ -42,6 +57,7 @@ opdr5::opdr5(int argc, char * argv[])
 		return;
 	}
 
+	corona::Image* destination = nullptr;
 
 	string command = "explorer " + path;
 
@@ -51,14 +67,13 @@ opdr5::opdr5(int argc, char * argv[])
 
 	byte* p = (byte*)image->getPixels();
 
-	corona::Image* destination = corona::CloneImage(image, corona::PF_R8G8B8);
-	byte* d = (byte*)destination->getPixels();
-	double const Pi = 4 * atan(1);
-	double corner = Pi/9; // corner of 20 degrees (pi = 180)
+	/*double const Pi = 4 * atan(1);
+	double corner = (Pi / 9) * 17; // corner of 20 degrees (pi = 180)
 	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
-	float invmatrix[9] = { cos(corner), sin(corner), 0, -cos(corner), cos(corner), 0, 0, 0, 1 };
+	//float invmatrix[9] = { cos(corner), sin(corner), 0, -cos(corner), cos(corner), 0, 0, 0, 1 };
+	*/
 	transformationMatrix trans;
-	trans.walk(width, height, matrix, 1, p, d);
+	trans.walk(width, height, matrix, interpol, p, destination);
 	opdr5_saveImage(destination, path + "TRANSMAT" + "_" + source);
 
 	cout << endl << "Done";
