@@ -73,8 +73,8 @@ void transformationMatrix::walk(int width, int height, float matrix[9], bool int
 	for (int i = (floor_lowestY * -1); i < (newImageHeight - floor_lowestY); i++){ //NOTE when BL is asked in our matrix calculation we receive not our left bottom corner of our original image.
 		for (int j = (floor_lowestX * -1); j < (newImageWidth - floor_lowestX); j++) //So we need to start negative
 		{
-			float x = matrixInv[0] * j + matrixInv[1] * i; //calculate original pixel location from destination pixel location
-			float y = matrixInv[3] * j + matrixInv[4] * i;
+			float x = matrixInv[0] * j + matrixInv[1] * i + matrixInv[2]; //calculate original pixel location from destination pixel location
+			float y = matrixInv[3] * j + matrixInv[4] * i + matrixInv[5];
 			byte* sourcePtr = (byte*)sourceScan;
 			byte* destinationPtr = (byte*)destinationScan + (((i + floor_lowestY) * (newImageWidth * 3)) + ((j + floor_lowestX) * 3)); //get pointer to destination scan
 			if (x >= 0 && x < width && y >= 0 && y < height) //x and y in range of original image
@@ -88,21 +88,26 @@ void transformationMatrix::walk(int width, int height, float matrix[9], bool int
 				}
 				else
 				{
-					int x0 = static_cast<int>(floor(x)); //floor = round down
-					int x1 = static_cast<int>(ceil(x)); //ceil = round up
-					int y0 = static_cast<int>(floor(y));
-					int y1 = static_cast<int>(ceil(y));
-					byte* x0y0 = sourcePtr + ((y0* (width * 3)) + (x0 * 3)); //get source pointer to calculated pixel
-					byte* x1y0 = sourcePtr + ((y0* (width * 3)) + (x1 * 3)); //get source pointer to calculated pixel
-					byte* x0y1 = sourcePtr + ((y1* (width * 3)) + (x0 * 3)); //get source pointer to calculated pixel
-					byte* x1y1 = sourcePtr + ((y1* (width * 3)) + (x1 * 3)); //get source pointer to calculated pixel
-					for (int colorIndex = 0; colorIndex < 3; colorIndex++) {
-						float h1 = ((x1 - x) / (x1 - x0)) * x0y0[colorIndex] + ((x - x0) / (x1 - x0)) * x1y0[colorIndex];
-						float h2 = ((x1 - x) / (x1 - x0)) * x0y1[colorIndex] + ((x - x0) / (x1 - x0)) * x1y1[colorIndex];
-						byte interp = (byte)((y1 - y) / (y1 - y0)) * h1 + ((y - y0) / (y1 - y0)) * h2;
-						destinationPtr[colorIndex] = interp;
-					}
+					if (y < height){
+						int x0 = static_cast<int>(floor(x)); //floor = round down
+						int x1 = static_cast<int>(ceil(x)); //ceil = round up
+						int y0 = static_cast<int>(floor(y));
+						int y1 = static_cast<int>(ceil(y));
 
+						float dx = x - x0;
+						float dy = y - y0;
+						//byte* original = sourcePtr;
+						byte* x0y0 = sourcePtr + ((y0* (width * 3)) + (x0 * 3)); //get source pointer to calculated pixel
+						byte* x1y0 = sourcePtr + ((y0* (width * 3)) + (x1 * 3)); //get source pointer to calculated pixel
+						byte* x0y1 = sourcePtr + ((y1* (width * 3)) + (x0 * 3)); //get source pointer to calculated pixel
+						byte* x1y1 = sourcePtr + ((y1* (width * 3)) + (x1 * 3)); //get source pointer to calculated pixel
+						for (int colorIndex = 0; colorIndex < 3; colorIndex++) {
+							float p = x0y0[colorIndex] + ((x1y0[colorIndex] - x0y0[colorIndex]) * dx);
+							float q = x0y1[colorIndex] + ((x1y1[colorIndex] - x0y1[colorIndex]) * dx);
+							float interp = p + ((q - p) * dy);
+							destinationPtr[colorIndex] = interp;
+						}
+					}
 				}
 				
 			}
