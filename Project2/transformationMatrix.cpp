@@ -53,9 +53,10 @@ void transformationMatrix::walk(int width, int height, float matrix[9], bool int
 	
 	image = corona::CreateImage(newImageWidth, newImageHeight, corona::PixelFormat::PF_R8G8B8);
 	byte * destinationScan = (byte*)image->getPixels();
-	
+
 	float matrixInv[9];
-	int determinant = static_cast<int> (matrix[0] * ((matrix[4] * matrix[8]) - (matrix[5] * matrix[7]))) - (matrix[1] * ((matrix[3] * matrix[8]) - (matrix[5] * matrix[6]))) + (matrix[2]*((matrix[3] * matrix[7]) - (matrix[4] * matrix[6])));
+	float determinant = (matrix[0] * ((matrix[4] * matrix[8]) - (matrix[5] * matrix[7]))) - (matrix[1] * ((matrix[3] * matrix[8]) - (matrix[5] * matrix[6]))) + (matrix[2] * ((matrix[3] * matrix[7]) - (matrix[4] * matrix[6])));
+
 	if (determinant > 0) {
 		matrixInv[0] = ((matrix[4] * matrix[8]) - (matrix[5] * matrix[7])) * (1 / determinant);
 		matrixInv[1] = ((matrix[2] * matrix[7]) - (matrix[1] * matrix[8])) * (1 / determinant);
@@ -67,6 +68,7 @@ void transformationMatrix::walk(int width, int height, float matrix[9], bool int
 		matrixInv[7] = ((matrix[1] * matrix[6]) - (matrix[0] * matrix[7])) * (1 / determinant);
 		matrixInv[8] = ((matrix[0] * matrix[4]) - (matrix[1] * matrix[3])) * (1 / determinant);
 	}
+
 
 	for (int i = (floor_lowestY * -1); i < (newImageHeight - floor_lowestY); i++){ //NOTE when BL is asked in our matrix calculation we receive not our left bottom corner of our original image.
 		for (int j = (floor_lowestX * -1); j < (newImageWidth - floor_lowestX); j++) //So we need to start negative

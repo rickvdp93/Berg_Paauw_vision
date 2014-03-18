@@ -20,8 +20,12 @@ opdr5::opdr5(int argc, char * argv[])
 	string path;
 	double const Pi = 4 * atan(1);
 	double corner = (Pi / 9); // corner of 20 degrees (pi = 180)
-	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
-	int interpol = 0;
+	float matrixRot20[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
+	float matrixScaling3[9] = { 3, 0, 0, 0, 3, 0, 0, 0, 1 };
+	float matrixShear3[9] = { 1, 3, 0, 0, 1, 0, 0, 0, 1 };
+	float matrixScaling3point5[9] = { 3.5f, 0, 0, 0, 3.5f, 0, 0, 0, 1 };
+	float matrix[9] = { 1, 3, 0, 0, 1, 0, 0, 0, 1 };
+	int interpol = 1;
 
 	if (argc == 4) {
 		std::string file = argv[1];
