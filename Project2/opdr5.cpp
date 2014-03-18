@@ -19,7 +19,7 @@ opdr5::opdr5(int argc, char * argv[])
 	string source;
 	string path;
 	double const Pi = 4 * atan(1);
-	double corner = (Pi / 9) * 17; // corner of 20 degrees (pi = 180)
+	double corner = (Pi / 9); // corner of 20 degrees (pi = 180)
 	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
 	int interpol = 0;
 

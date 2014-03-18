@@ -54,25 +54,25 @@ void transformationMatrix::walk(int width, int height, float matrix[9], bool int
 	image = corona::CreateImage(newImageWidth, newImageHeight, corona::PixelFormat::PF_R8G8B8);
 	byte * destinationScan = (byte*)image->getPixels();
 	
-
-	int determinant = static_cast<int>(matrix[0] * ((matrix[4] * matrix[8]) - (matrix[5] * matrix[7])) - matrix[1] * ((matrix[8] * matrix[3]) - (matrix[5] * matrix[6])) + matrix[2] * ((matrix[3] * matrix[7]) - (matrix[4] * matrix[6])));
+	float matrixInv[9];
+	int determinant = static_cast<int> (matrix[0] * ((matrix[4] * matrix[8]) - (matrix[5] * matrix[7]))) - (matrix[1] * ((matrix[3] * matrix[8]) - (matrix[5] * matrix[6]))) + (matrix[2]*((matrix[3] * matrix[7]) - (matrix[4] * matrix[6])));
 	if (determinant > 0) {
-		matrix[0] = ((matrix[4] * matrix[8]) - (matrix[5] * matrix[7])) * (1 / determinant);
-		matrix[1] = ((matrix[2] * matrix[7]) - (matrix[1] * matrix[8])) * (1 / determinant);
-		matrix[2] = ((matrix[1] * matrix[5]) - (matrix[2] * matrix[4])) * (1 / determinant);
-		matrix[3] = ((matrix[5] * matrix[6]) - (matrix[3] * matrix[8])) * (1 / determinant);
-		matrix[4] = ((matrix[0] * matrix[8]) - (matrix[2] * matrix[6])) * (1 / determinant);
-		matrix[5] = ((matrix[2] * matrix[3]) - (matrix[0] * matrix[5])) * (1 / determinant);
-		matrix[6] = ((matrix[3] * matrix[7]) - (matrix[4] * matrix[6])) * (1 / determinant);
-		matrix[7] = ((matrix[1] * matrix[6]) - (matrix[0] * matrix[7])) * (1 / determinant);
-		matrix[8] = ((matrix[0] * matrix[4]) - (matrix[1] * matrix[3])) * (1 / determinant);
+		matrixInv[0] = ((matrix[4] * matrix[8]) - (matrix[5] * matrix[7])) * (1 / determinant);
+		matrixInv[1] = ((matrix[2] * matrix[7]) - (matrix[1] * matrix[8])) * (1 / determinant);
+		matrixInv[2] = ((matrix[1] * matrix[5]) - (matrix[2] * matrix[4])) * (1 / determinant);
+		matrixInv[3] = ((matrix[5] * matrix[6]) - (matrix[3] * matrix[8])) * (1 / determinant);
+		matrixInv[4] = ((matrix[0] * matrix[8]) - (matrix[2] * matrix[6])) * (1 / determinant);
+		matrixInv[5] = ((matrix[2] * matrix[3]) - (matrix[0] * matrix[5])) * (1 / determinant);
+		matrixInv[6] = ((matrix[3] * matrix[7]) - (matrix[4] * matrix[6])) * (1 / determinant);
+		matrixInv[7] = ((matrix[1] * matrix[6]) - (matrix[0] * matrix[7])) * (1 / determinant);
+		matrixInv[8] = ((matrix[0] * matrix[4]) - (matrix[1] * matrix[3])) * (1 / determinant);
 	}
 
 	for (int i = (floor_lowestY * -1); i < (newImageHeight - floor_lowestY); i++){ //NOTE when BL is asked in our matrix calculation we receive not our left bottom corner of our original image.
 		for (int j = (floor_lowestX * -1); j < (newImageWidth - floor_lowestX); j++) //So we need to start negative
 		{
-			float x = matrix[0] * j + matrix[1] * i; //calculate original pixel location from destination pixel location
-			float y = matrix[3] * j + matrix[4] * i;
+			float x = matrixInv[0] * j + matrixInv[1] * i; //calculate original pixel location from destination pixel location
+			float y = matrixInv[3] * j + matrixInv[4] * i;
 			byte* sourcePtr = (byte*)sourceScan;
 			byte* destinationPtr = (byte*)destinationScan + (((i + floor_lowestY) * (newImageWidth * 3)) + ((j + floor_lowestX) * 3)); //get pointer to destination scan
 			if (x >= 0 && x < width && y >= 0 && y < height) //x and y in range of original image
