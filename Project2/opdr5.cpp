@@ -20,10 +20,11 @@ opdr5::opdr5(int argc, char * argv[])
 	string path;
 	double const Pi = 4 * atan(1);
 	double corner = (Pi / 9); // corner of 20 degrees (pi = 180)
-	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
+	float matrixbu[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
+	float matrix[9] = { 0.939, -0.342, 0, 0.342, 0.939, 0, 0, 0, 1 };
 	float matrixScaling3[9] = { 3, 0, 0, 0, 3, 0, 0, 0, 1 };
 	float matrixShear3[9] = { 1, 3, 0, 0, 1, 0, 0, 0, 1 };
-	float matrixScaling3point5[9] = { 3.5f, 0, 0, 0, 3.5f, 0, 0, 0, 1 };
+	float matrixScale3Point5[9] = { 3.5f, 0, 0, 0, 3.5f, 0, 0, 0, 1 };
 	int interpol = 1;
 
 	if (argc == 4) {
@@ -77,7 +78,7 @@ opdr5::opdr5(int argc, char * argv[])
 	*/
 	transformationMatrix trans;
 	trans.walk(width, height, matrix, interpol, p, destination);
-	opdr5_saveImage(destination, path + "FIRST-ORDER-INTERPOLATION_20_DEGREE_ROTATION" + "_" + source);
+	opdr5_saveImage(destination, path + "INTERP" + "_" + source);
 
 	cout << endl << "Done";
 	cin.get();

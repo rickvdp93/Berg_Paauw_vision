@@ -88,7 +88,7 @@ void transformationMatrix::walk(int width, int height, float matrix[9], bool int
 				}
 				else
 				{
-					if (y < height){
+					if (y < (height-1) && x < (width-1)){
 						int x0 = static_cast<int>(floor(x)); //floor = round down
 						int x1 = static_cast<int>(ceil(x)); //ceil = round up
 						int y0 = static_cast<int>(floor(y));
