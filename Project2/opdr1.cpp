@@ -49,7 +49,7 @@ void opdr1()
 
 	void* pixels = image->getPixels();
 	grayFilter.makeGrayScale(numberOfPixels, (byte*)pixels);
-	//equalizeFilter.setChannel(grayFilter, numberOfPixels, (byte*)pixels);
+	equalizeFilter.setChannel(grayFilter, numberOfPixels, (byte*)pixels);
 	saveImage(image, path + "E_" + source);
 	equalizeFilter.writeCSV(grayFilter, numberOfPixels, path + "E_" + histrogram);
 	image = NULL;
@@ -58,9 +58,9 @@ void opdr1()
 	pixels = red->getPixels();
 	redFilter.setChannel(numberOfPixels, (byte*)pixels);
 	saveImage(red, path + "R_" + source);
-	redFilter.writeCSV(numberOfPixels, path + "R_" + histrogram);
+	redFilter.writeCSV(numberOfPixels, path + "R_" + histrogram, false);
 	red = NULL;
-
+	
 	corona::Image* green = corona::OpenImage((path + source).c_str(), corona::PF_B8G8R8A8);
 	pixels = green->getPixels();
 	greenFilter.setChannel(numberOfPixels, (byte*)pixels);
@@ -77,7 +77,6 @@ void opdr1()
 
 	corona::Image* fun = corona::OpenImage((path + source).c_str(), corona::PF_B8G8R8A8);
 	pixels = fun->getPixels();
-	equalizeFilter.setChannel(grayFilter, numberOfPixels, (byte*)pixels);
 	equalizeFilter.setChannel(grayFilter, numberOfPixels, (byte*)pixels);
 	saveImage(fun, path + "FUN_" + source);
 	//writeCSV(EQUALIZED, numberOfPixels, path + "FUN_" + histrogram);

@@ -5,4 +5,4 @@ typedef unsigned char byte;
 
 void saveImage(corona::Image* image, string path);
 
-void opdr23(int argc, char * argv[]);
+void opdr3(int argc, char * argv[]);

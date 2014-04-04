@@ -1,4 +1,4 @@
-#include "opdr5.h"
+#include "opdr4.h"
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -10,18 +10,18 @@
 using namespace std;
 typedef unsigned char byte; //The byte type is born!
 
-void opdr5_saveImage(corona::Image* image, string path) {
+void opdr4_saveImage(corona::Image* image, string path) {
 	bool output = corona::SaveImage(path.c_str(), corona::FF_PNG, image);
 }
 
-opdr5::opdr5(int argc, char * argv[])
+opdr4::opdr4(int argc, char * argv[])
 {
 	string source;
 	string path;
-	double const Pi = 4 * atan(1);
-	double corner = (Pi / 9); // corner of 20 degrees (pi = 180)
-	float matrixbu[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
-	float matrix[9] = { 0.939, -0.342, 0, 0.342, 0.939, 0, 0, 0, 1 };
+	float const Pi = 4 * atan(1);
+	float corner = (Pi / 4); // corner of 20 degrees (pi = 180)
+	float matrix[9] = { cos(corner), -sin(corner), 0, sin(corner), cos(corner), 0, 0, 0, 1 };
+	//float matrix[9] = { 0.939, -0.342, 0, 0.342, 0.939, 0, 0, 0, 1 };
 	float matrixScaling3[9] = { 3, 0, 0, 0, 3, 0, 0, 0, 1 };
 	float matrixShear3[9] = { 1, 3, 0, 0, 1, 0, 0, 0, 1 };
 	float matrixScale3Point5[9] = { 3.5f, 0, 0, 0, 3.5f, 0, 0, 0, 1 };
@@ -78,7 +78,7 @@ opdr5::opdr5(int argc, char * argv[])
 	*/
 	transformationMatrix trans;
 	trans.walk(width, height, matrix, interpol, p, destination);
-	opdr5_saveImage(destination, path + "INTERP" + "_" + source);
+	opdr4_saveImage(destination, path + "INTERP" + "_" + source);
 
 	cout << endl << "Done";
 	cin.get();

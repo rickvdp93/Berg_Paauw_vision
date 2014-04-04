@@ -4,7 +4,6 @@
 
 typedef unsigned char byte; //The byte type is born!
 
-
 void GrayFilter::makeGrayScale(int numberOfPixels, byte * pixels) {
 	byte* p = (byte*)pixels;
 	byte* d = (byte*)pixels;

@@ -4,7 +4,7 @@
 #include "corona.h"
 #include <stdlib.h>
 #include <algorithm>    // std::max
-#include "opdr23.h"
+#include "opdr3.h"
 #include <direct.h>
 #include "ImageMatrixWalker.h"
 #include "MedianFilter.h"
@@ -23,12 +23,12 @@ using namespace std;
 
 typedef unsigned char byte; //The byte type is born!
 
-void opdr2_saveImage(corona::Image* image, string path) {
+void opdr3_saveImage(corona::Image* image, string path) {
 	bool output = corona::SaveImage(path.c_str(), corona::FF_PNG, image);
 }
 
 
-void opdr23(int argc, char * argv[])
+void opdr3(int argc, char * argv[])
 {
 	//GrayFilter gray;
 	string source;
@@ -82,14 +82,31 @@ void opdr23(int argc, char * argv[])
 	byte* d = (byte*)destination->getPixels();
 
 	if (kmeanfilter) {
-		kmeans filter;
-		filter.filter(p, d, numberOfPixels, kclusters);
-		opdr2_saveImage(destination, path + "KMEANS" + "_" + source);
+		kmeans kmeans_custom;
+		cout << "Custom k-means started\n";
+		kmeans_custom.filter(p, d, numberOfPixels, kclusters);
+		opdr3_saveImage(destination, path + "KMEANS_CUSTOM" + "_" + source);
+		kmeans kmeans_3;
+		cout << "3 k-means started\n";
+		kmeans_3.filter(p, d, numberOfPixels, 3);
+		opdr3_saveImage(destination, path + "KMEANS_3" + "_" + source);
+		kmeans kmeans_5;
+		cout << "5 k-means started\n";
+		kmeans_5.filter(p, d, numberOfPixels, 5);
+		opdr3_saveImage(destination, path + "KMEANS_5" + "_" + source);
+		kmeans kmeans_7;
+		cout << "7 k-means started\n";
+		kmeans_7.filter(p, d, numberOfPixels, 7);
+		opdr3_saveImage(destination, path + "KMEANS_7" + "_" + source);
+		kmeans kmeans_20;
+		cout << "20 k-means started\n";
+		kmeans_20.filter(p, d, numberOfPixels, 20);
+		opdr3_saveImage(destination, path + "KMEANS_20" + "_" + source);
 	}
 	else {
 		Threshold filter;
 		filter.Filter(width, height, d);
-		opdr2_saveImage(destination, path + "THRESHOLD" + "_" + source);
+		opdr3_saveImage(destination, path + "THRESHOLD" + "_" + source);
 	}
 	cout << endl << "Done";
 	cin.get();
