@@ -7,7 +7,7 @@
 void main(int argc, char * argv[])
 {	
 	//de-comment the assignment that you want to run and make comment of the other assignments. 
-	//don't forget to copy the corona.lib from the githubroot to the Debug-folder.
+	//don't forget to copy the corona.dll from the githubroot to the Debug-folder.
 	//opdr1();
 	//opdr2(argc, argv);
 	//opdr3(argc, argv);
