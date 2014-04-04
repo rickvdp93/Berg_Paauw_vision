@@ -79,7 +79,6 @@ void opdr2(int argc, char * argv[])
 
 	corona::Image* destination = corona::CloneImage(image, corona::PF_R8G8B8);
 	byte* d = (byte*)destination->getPixels();
-	filter = false;
 	if (filter){
 		MinFilter min;
 		min.walk(width, height, windowSize, p, d);

@@ -47,7 +47,7 @@ opdr4::opdr4(int argc, char * argv[])
 		interpol = atoi(argv[3]);
 	}
 	else {
-		cout << "No parameters given. Example: vision.exe \"C:\\test\\test.jpg\" \"C:\\test\\matrix.txt\"." << endl;
+		cout << "No parameters given. Example: vision.exe \"C:\\test\\test.jpg\" \"C:\\test\\matrix.txt\"(matrix-examples are in the root of the github)." << endl;
 		cout << "Location of the picture (like C:\\images\\): " << endl;
 		cin >> path;
 		cout << "Name + extension of the picture (like pic.jpg): \n";
